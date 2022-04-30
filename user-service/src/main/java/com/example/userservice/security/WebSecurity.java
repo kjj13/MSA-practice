@@ -31,13 +31,16 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-//        http.authorizeRequests().antMatchers("/users/**").permitAll();  // /users로 들어온 요청은 허용시켜줌.
+        // /users로 들어온 요청은 허용시켜줌.
+        http.authorizeRequests().antMatchers("/**").permitAll();
 
+
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll();
         // 인증이 완료된 상태에서만
-        http.authorizeRequests().antMatchers("/**")
-                .hasIpAddress("192.168.2.2") // 본인의 IP로 작성
-                .and()
-                .addFilter(getAuthenticationFilter());
+//        http.authorizeRequests().antMatchers("/**")
+//                .hasIpAddress("desktop-kvcqhcd") // 본인의 IP로 작성
+//                .and()
+//                .addFilter(getAuthenticationFilter());
 
 
         http.headers().frameOptions().disable();    // 프레임별로 나뉘어져 있는 html 정상적으로 출력 가능.

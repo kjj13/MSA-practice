@@ -27,8 +27,8 @@ public class OrderController {
     public OrderController(Environment env, OrderService orderService) {
         this.env = env;
         this.orderService = orderService;
-    }
 
+    }
     @GetMapping("/health_check")
     public String status(){
         return String.format("It's Working in Order Service on PORT %s",
